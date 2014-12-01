@@ -1244,11 +1244,11 @@ for _lib in _libs.itervalues():
     break
 
 for _lib in _libs.itervalues():
-    if not hasattr(_lib, 'ovrHmd_GetEyePose'):
+    if not hasattr(_lib, 'ovrHmd_GetHmdPosePerEye'):
         continue
-    ovrHmd_GetEyePose = _lib.ovrHmd_GetEyePose
-    ovrHmd_GetEyePose.argtypes = [ovrHmd, ovrEyeType]
-    ovrHmd_GetEyePose.restype = ovrPosef
+    ovrHmd_GetHmdPosePerEye = _lib.ovrHmd_GetHmdPosePerEye
+    ovrHmd_GetHmdPosePerEye.argtypes = [ovrHmd, ovrEyeType]
+    ovrHmd_GetHmdPosePerEye.restype = ovrPosef
     break
 
 for _lib in _libs.itervalues():
@@ -1719,7 +1719,7 @@ class Hmd():
         return ovrHmd_BeginFrame(self.hmd, frame_index)
 
     def get_eye_pose(self, eye):
-        return ovrHmd_GetEyePose(self.hmd, eye)
+        return ovrHmd_GetHmdPosePerEye(self.hmd, eye)
 
     def end_frame(self, poses, textures):
         pose_arr = (ovrPosef * 2)(*poses)
