@@ -363,6 +363,8 @@ class LibraryLoader(object):
             # errors
             if sys.platform == 'darwin':
                 return ctypes.CDLL(path, ctypes.RTLD_GLOBAL)
+            elif sys.platform == 'linux2':
+                return ctypes.CDLL(path, ctypes.RTLD_GLOBAL)
             else:
                 return ctypes.cdll.LoadLibrary(path)
         except OSError,e:
@@ -603,7 +605,7 @@ file = "OVR_C.dll"
 if 64 == 8 * struct.calcsize("P"):
     suffix = "-x86-64"
 if ("linux" in sys.platform):
-    file = "libOVR_C.so"
+    file = "libovr.so.0.1"
     prefix = "linux"
 elif ("darwin" in sys.platform):
     file = "libOVR_C.dylib"
